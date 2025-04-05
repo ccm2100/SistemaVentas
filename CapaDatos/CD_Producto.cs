@@ -192,5 +192,33 @@ namespace CapaDatos
 
             return respuesta;
         }
+
+        public bool RegistrarLotes(int idProducto, List<LoteProducto> lotes, out string mensaje)
+        {
+            mensaje = "";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Conexion.cadena))
+                {
+                    conn.Open();
+                    foreach (var lote in lotes)
+                    {
+                        SqlCommand cmd = new SqlCommand("INSERT INTO LoteProducto(IdProducto, NumeroLote, FechaVencimiento, Cantidad) VALUES (@IdProducto, @NumeroLote, @FechaVencimiento, @Cantidad)", conn);
+                        cmd.Parameters.AddWithValue("@IdProducto", idProducto);
+                        cmd.Parameters.AddWithValue("@NumeroLote", lote.NumeroLote);
+                        cmd.Parameters.AddWithValue("@FechaVencimiento", lote.FechaVencimiento);
+                        cmd.Parameters.AddWithValue("@Cantidad", lote.Cantidad);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+                return false;
+            }
+        }
+
     }
 }

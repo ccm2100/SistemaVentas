@@ -1,4 +1,8 @@
-﻿namespace CapaPresentacion
+﻿using System.Windows.Forms;
+using System;
+using System.Drawing;
+
+namespace CapaPresentacion
 {
     partial class frmProducto
     {
@@ -512,6 +516,53 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+            // Número de lote
+            Label lblLote = new Label() { Text = "N° Lote:", Location = new Point(40, 390) };
+            txtNumeroLote = new TextBox() { Location = new Point(100, 387), Width = 130 };
+
+            // Fecha de vencimiento
+            Label lblVenc = new Label() { Text = "Vencimiento:", Location = new Point(40, 420) };
+            dtpVencimiento = new DateTimePicker() { Location = new Point(130, 417), Format = DateTimePickerFormat.Short };
+
+            // Cantidad
+            Label lblCant = new Label() { Text = "Cantidad:", Location = new Point(40, 450) };
+            txtCantidadLote = new TextBox() { Location = new Point(100, 447), Width = 80 };
+
+            // Botón Agregar
+            btnAgregarLote = new Button()
+            {
+                Text = "Agregar Lote",
+                Location = new Point(40, 480),
+                Width = 190,
+                BackColor = Color.ForestGreen,
+                ForeColor = Color.White
+            };
+            btnAgregarLote.Click += new EventHandler(btnAgregarLote_Click);
+
+            // DataGridView de lotes
+            dgvLotes = new DataGridView()
+            {
+                Location = new Point(279, 490),
+                Size = new Size(841, 80),
+                ReadOnly = true,
+                AllowUserToAddRows = false,
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            };
+            dgvLotes.Columns.Add("Lote", "Lote");
+            dgvLotes.Columns.Add("Vencimiento", "Vencimiento");
+            dgvLotes.Columns.Add("Cantidad", "Cantidad");
+
+            // Agrega todo al formulario
+            this.Controls.Add(lblLote);
+            this.Controls.Add(txtNumeroLote);
+            this.Controls.Add(lblVenc);
+            this.Controls.Add(dtpVencimiento);
+            this.Controls.Add(lblCant);
+            this.Controls.Add(txtCantidadLote);
+            this.Controls.Add(btnAgregarLote);
+            this.Controls.Add(dgvLotes);
+
+
         }
 
         #endregion
@@ -553,5 +604,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn EstadoValor;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
         private FontAwesome.Sharp.IconButton btnexportar;
+        private System.Windows.Forms.DataGridView dgvLotes;
+        private System.Windows.Forms.TextBox txtNumeroLote;
+        private System.Windows.Forms.DateTimePicker dtpVencimiento;
+        private System.Windows.Forms.TextBox txtCantidadLote;
+        private System.Windows.Forms.Button btnAgregarLote;
+
     }
 }

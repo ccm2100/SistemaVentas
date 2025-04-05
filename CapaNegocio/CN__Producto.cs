@@ -88,5 +88,11 @@ namespace CapaNegocio
         {
             return objcd_Producto.Eliminar(obj, out Mensaje);
         }
+
+        public bool RegistrarLotes(int idProducto, List<LoteProducto> lotes, out string mensaje)
+        {
+            return new CD_Producto().RegistrarLotes(idProducto, lotes, out mensaje);
+        }
+
     }
 }

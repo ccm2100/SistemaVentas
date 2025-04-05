@@ -38,7 +38,11 @@ namespace CapaPresentacion
             }
             cbocategoria.DisplayMember = "Texto";
             cbocategoria.ValueMember = "Valor";
-            cbocategoria.SelectedIndex = 0;
+            if (cbocategoria.Items.Count > 0)
+            {
+                cbocategoria.SelectedIndex = 0;
+            }
+
 
 
             foreach (DataGridViewColumn columna in dgvdata.Columns)
@@ -294,6 +298,23 @@ namespace CapaPresentacion
         {
             Limpiar();
         }
+
+        private void btnAgregarLote_Click(object sender, EventArgs e)
+        {
+            if (txtNumeroLote.Text.Trim() == "" || txtCantidadLote.Text.Trim() == "")
+            {
+                MessageBox.Show("Completa los datos del lote.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            dgvLotes.Rows.Add(txtNumeroLote.Text.Trim(), dtpVencimiento.Value.ToShortDateString(), txtCantidadLote.Text.Trim());
+
+            // Limpia los campos después de agregar
+            txtNumeroLote.Text = "";
+            txtCantidadLote.Text = "";
+            dtpVencimiento.Value = DateTime.Today;
+        }
+
 
         private void btnexportar_Click(object sender, EventArgs e)
         {
