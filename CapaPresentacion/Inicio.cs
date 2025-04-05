@@ -159,5 +159,10 @@ namespace CapaPresentacion
             MessageBox.Show("DASHBOARD");
         }
 
+        private void ingresarFacturasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(menucompras, new frmIngresoFactura());
+
+        }
     }
 }
