@@ -34,6 +34,7 @@
             this.menumantenedor = new FontAwesome.Sharp.IconMenuItem();
             this.submenucategoria = new FontAwesome.Sharp.IconMenuItem();
             this.submenuproducto = new FontAwesome.Sharp.IconMenuItem();
+            this.controlLotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.submenunegocio = new System.Windows.Forms.ToolStripMenuItem();
             this.menuventas = new FontAwesome.Sharp.IconMenuItem();
             this.submenuregistrarventa = new FontAwesome.Sharp.IconMenuItem();
@@ -55,7 +56,7 @@
             this.lblusuario = new System.Windows.Forms.Label();
             this.btnsalir = new FontAwesome.Sharp.IconButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.controlLotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inventarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -113,7 +114,8 @@
             this.menumantenedor.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.submenucategoria,
             this.submenuproducto,
-            this.submenunegocio});
+            this.submenunegocio,
+            this.inventarioToolStripMenuItem});
             this.menumantenedor.IconChar = FontAwesome.Sharp.IconChar.Tools;
             this.menumantenedor.IconColor = System.Drawing.Color.Black;
             this.menumantenedor.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -145,6 +147,13 @@
             this.submenuproducto.Size = new System.Drawing.Size(180, 22);
             this.submenuproducto.Text = "Producto";
             this.submenuproducto.Click += new System.EventHandler(this.submenuproducto_Click);
+            // 
+            // controlLotesToolStripMenuItem
+            // 
+            this.controlLotesToolStripMenuItem.Name = "controlLotesToolStripMenuItem";
+            this.controlLotesToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.controlLotesToolStripMenuItem.Text = "Control Lotes y Vencimientos";
+            this.controlLotesToolStripMenuItem.Click += new System.EventHandler(this.controlLotesToolStripMenuItem_Click);
             // 
             // submenunegocio
             // 
@@ -387,12 +396,12 @@
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
             // 
-            // controlLotesToolStripMenuItem
+            // inventarioToolStripMenuItem
             // 
-            this.controlLotesToolStripMenuItem.Name = "controlLotesToolStripMenuItem";
-            this.controlLotesToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
-            this.controlLotesToolStripMenuItem.Text = "Control Lotes y Vencimientos";
-            this.controlLotesToolStripMenuItem.Click += new System.EventHandler(this.controlLotesToolStripMenuItem_Click);
+            this.inventarioToolStripMenuItem.Name = "inventarioToolStripMenuItem";
+            this.inventarioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.inventarioToolStripMenuItem.Text = "Inventario";
+            this.inventarioToolStripMenuItem.Click += new System.EventHandler(this.inventarioToolStripMenuItem_Click);
             // 
             // Inicio
             // 
@@ -450,6 +459,7 @@
         private FontAwesome.Sharp.IconMenuItem menudashboard;
         private System.Windows.Forms.ToolStripMenuItem ingresarFacturasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem controlLotesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem inventarioToolStripMenuItem;
     }
 }
 

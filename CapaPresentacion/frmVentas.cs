@@ -22,6 +22,8 @@ namespace CapaPresentacion
         {
             _Usuario = oUsuario;
             InitializeComponent();
+            txtpagocon.TextChanged += txtpagocon_TextChanged; // 👈 Esto es lo nuevo
+
         }
 
         private void frmVentas_Load(object sender, EventArgs e)
@@ -323,6 +325,12 @@ namespace CapaPresentacion
                 calcularcambio();
             }
         }
+
+        private void txtpagocon_TextChanged(object sender, EventArgs e)
+        {
+            calcularcambio();
+        }
+
 
         private void btncrearventa_Click(object sender, EventArgs e)
         {
