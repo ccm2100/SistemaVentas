@@ -41,6 +41,7 @@
             this.menucompras = new FontAwesome.Sharp.IconMenuItem();
             this.submenuregistrarcompra = new FontAwesome.Sharp.IconMenuItem();
             this.submenutverdetallecompra = new FontAwesome.Sharp.IconMenuItem();
+            this.ingresarFacturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuclientes = new FontAwesome.Sharp.IconMenuItem();
             this.menuproveedores = new FontAwesome.Sharp.IconMenuItem();
             this.menureportes = new FontAwesome.Sharp.IconMenuItem();
@@ -54,7 +55,7 @@
             this.lblusuario = new System.Windows.Forms.Label();
             this.btnsalir = new FontAwesome.Sharp.IconButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.ingresarFacturasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.controlLotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -119,7 +120,7 @@
             this.menumantenedor.IconSize = 50;
             this.menumantenedor.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.menumantenedor.Name = "menumantenedor";
-            this.menumantenedor.Size = new System.Drawing.Size(80, 69);
+            this.menumantenedor.Size = new System.Drawing.Size(122, 69);
             this.menumantenedor.Text = "Mantenedor";
             this.menumantenedor.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
@@ -129,24 +130,26 @@
             this.submenucategoria.IconColor = System.Drawing.Color.Black;
             this.submenucategoria.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.submenucategoria.Name = "submenucategoria";
-            this.submenucategoria.Size = new System.Drawing.Size(125, 22);
+            this.submenucategoria.Size = new System.Drawing.Size(180, 22);
             this.submenucategoria.Text = "Categoria";
             this.submenucategoria.Click += new System.EventHandler(this.submenucategoria_Click);
             // 
             // submenuproducto
             // 
+            this.submenuproducto.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.controlLotesToolStripMenuItem});
             this.submenuproducto.IconChar = FontAwesome.Sharp.IconChar.None;
             this.submenuproducto.IconColor = System.Drawing.Color.Black;
             this.submenuproducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.submenuproducto.Name = "submenuproducto";
-            this.submenuproducto.Size = new System.Drawing.Size(125, 22);
+            this.submenuproducto.Size = new System.Drawing.Size(180, 22);
             this.submenuproducto.Text = "Producto";
             this.submenuproducto.Click += new System.EventHandler(this.submenuproducto_Click);
             // 
             // submenunegocio
             // 
             this.submenunegocio.Name = "submenunegocio";
-            this.submenunegocio.Size = new System.Drawing.Size(125, 22);
+            this.submenunegocio.Size = new System.Drawing.Size(180, 22);
             this.submenunegocio.Text = "Negocio";
             this.submenunegocio.Click += new System.EventHandler(this.submenunegocio_Click);
             // 
@@ -209,7 +212,7 @@
             this.submenuregistrarcompra.IconColor = System.Drawing.Color.Black;
             this.submenuregistrarcompra.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.submenuregistrarcompra.Name = "submenuregistrarcompra";
-            this.submenuregistrarcompra.Size = new System.Drawing.Size(180, 22);
+            this.submenuregistrarcompra.Size = new System.Drawing.Size(163, 22);
             this.submenuregistrarcompra.Text = "Registrar";
             this.submenuregistrarcompra.Click += new System.EventHandler(this.submenuregistrarcompra_Click);
             // 
@@ -219,9 +222,16 @@
             this.submenutverdetallecompra.IconColor = System.Drawing.Color.Black;
             this.submenutverdetallecompra.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.submenutverdetallecompra.Name = "submenutverdetallecompra";
-            this.submenutverdetallecompra.Size = new System.Drawing.Size(180, 22);
+            this.submenutverdetallecompra.Size = new System.Drawing.Size(163, 22);
             this.submenutverdetallecompra.Text = "Ver Detalle";
             this.submenutverdetallecompra.Click += new System.EventHandler(this.submenutverdetallecompra_Click);
+            // 
+            // ingresarFacturasToolStripMenuItem
+            // 
+            this.ingresarFacturasToolStripMenuItem.Name = "ingresarFacturasToolStripMenuItem";
+            this.ingresarFacturasToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.ingresarFacturasToolStripMenuItem.Text = "Ingresar Facturas";
+            this.ingresarFacturasToolStripMenuItem.Click += new System.EventHandler(this.ingresarFacturasToolStripMenuItem_Click);
             // 
             // menuclientes
             // 
@@ -377,12 +387,12 @@
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
             // 
-            // ingresarFacturasToolStripMenuItem
+            // controlLotesToolStripMenuItem
             // 
-            this.ingresarFacturasToolStripMenuItem.Name = "ingresarFacturasToolStripMenuItem";
-            this.ingresarFacturasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.ingresarFacturasToolStripMenuItem.Text = "Ingresar Facturas";
-            this.ingresarFacturasToolStripMenuItem.Click += new System.EventHandler(this.ingresarFacturasToolStripMenuItem_Click);
+            this.controlLotesToolStripMenuItem.Name = "controlLotesToolStripMenuItem";
+            this.controlLotesToolStripMenuItem.Size = new System.Drawing.Size(228, 22);
+            this.controlLotesToolStripMenuItem.Text = "Control Lotes y Vencimientos";
+            this.controlLotesToolStripMenuItem.Click += new System.EventHandler(this.controlLotesToolStripMenuItem_Click);
             // 
             // Inicio
             // 
@@ -439,6 +449,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private FontAwesome.Sharp.IconMenuItem menudashboard;
         private System.Windows.Forms.ToolStripMenuItem ingresarFacturasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem controlLotesToolStripMenuItem;
     }
 }
 

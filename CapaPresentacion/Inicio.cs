@@ -164,5 +164,10 @@ namespace CapaPresentacion
             AbrirFormulario(menucompras, new frmIngresoFactura());
 
         }
+
+        private void controlLotesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(menucompras, new frmControlLotesV());
+        }
     }
 }
