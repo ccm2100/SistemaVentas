@@ -124,7 +124,7 @@ namespace CapaPresentacion
             this.dgvdata.Location = new System.Drawing.Point(279, 121);
             this.dgvdata.MultiSelect = false;
             this.dgvdata.Name = "dgvdata";
-            this.dgvdata.ReadOnly = true;
+            this.dgvdata.ReadOnly = false;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvdata.RowsDefaultCellStyle = dataGridViewCellStyle2;
@@ -191,13 +191,13 @@ namespace CapaPresentacion
             // 
             this.PrecioCompra.HeaderText = "Precio Compra";
             this.PrecioCompra.Name = "PrecioCompra";
-            this.PrecioCompra.ReadOnly = true;
+            this.PrecioCompra.ReadOnly = false;
             // 
             // PrecioVenta
             // 
             this.PrecioVenta.HeaderText = "Precio Venta";
             this.PrecioVenta.Name = "PrecioVenta";
-            this.PrecioVenta.ReadOnly = true;
+            this.PrecioVenta.ReadOnly = false;
             // 
             // EstadoValor
             // 

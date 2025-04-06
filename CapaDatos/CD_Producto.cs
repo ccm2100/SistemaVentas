@@ -83,6 +83,7 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                     cmd.Parameters.AddWithValue("Nombre", obj.Nombre);
                     cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
+                    cmd.Parameters.AddWithValue("Stock", obj.Stock);
                     cmd.Parameters.AddWithValue("IdCategoria", obj.oCategoria.IdCategoria);
                     cmd.Parameters.AddWithValue("Estado", obj.Estado);
                     cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
@@ -129,6 +130,7 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("Codigo", obj.Codigo);
                     cmd.Parameters.AddWithValue("Nombre", obj.Nombre);
                     cmd.Parameters.AddWithValue("Descripcion", obj.Descripcion);
+                    cmd.Parameters.AddWithValue("Stock", obj.Stock);
                     cmd.Parameters.AddWithValue("IdCategoria", obj.oCategoria.IdCategoria);
                     cmd.Parameters.AddWithValue("Estado", obj.Estado);
                     cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
@@ -219,6 +221,41 @@ namespace CapaDatos
                 return false;
             }
         }
+
+        public bool ActualizarPrecios(int idProducto, decimal precioCompra, decimal precioVenta, out string mensaje)
+        {
+            bool resultado = false;
+            mensaje = string.Empty;
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Conexion.cadena))
+                {
+                    SqlCommand cmd = new SqlCommand("sp_ActualizarPreciosProducto", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@IdProducto", idProducto);
+                    cmd.Parameters.AddWithValue("@PrecioCompra", precioCompra);
+                    cmd.Parameters.AddWithValue("@PrecioVenta", precioVenta);
+
+                    cmd.Parameters.Add("@Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+
+                    resultado = Convert.ToBoolean(cmd.Parameters["@Resultado"].Value);
+                    mensaje = cmd.Parameters["@Mensaje"].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                resultado = false;
+                mensaje = ex.Message;
+            }
+
+            return resultado;
+        }
+
 
     }
 }

@@ -19,6 +19,8 @@ namespace CapaPresentacion
         public frmProducto()
         {
             InitializeComponent();
+            this.dgvdata.CellEndEdit += new DataGridViewCellEventHandler(this.dgvdata_CellEndEdit);
+
         }
 
         private void frmProducto_Load(object sender, EventArgs e)
@@ -80,13 +82,22 @@ namespace CapaPresentacion
                     item.Estado == true ? "Activo" : "No Activo"
                 });
             }
+            dgvdata.Columns["PrecioCompra"].ReadOnly = false;
+            dgvdata.Columns["PrecioVenta"].ReadOnly = false;
+
 
         }
 
         private void btnguardar_Click(object sender, EventArgs e)
         {
-
             string mensaje = string.Empty;
+
+            // Validar que se haya ingresado stock
+            if (string.IsNullOrWhiteSpace(txtstock.Text))
+            {
+                MessageBox.Show("Debe ingresar el stock del producto", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             Producto obj = new Producto()
             {
@@ -99,27 +110,25 @@ namespace CapaPresentacion
                 Estado = Convert.ToInt32(((OpcionCombo)cboestado.SelectedItem).Valor) == 1
             };
 
-
             if (obj.IdProducto == 0)
             {
                 int idgenerado = new CN__Producto().Registrar(obj, out mensaje);
 
                 if (idgenerado != 0)
                 {
-
                     dgvdata.Rows.Add(new object[] {
                         "",
-                       idgenerado,
-                       txtcodigo.Text,
-                       txtnombre.Text,
-                       txtdescripcion.Text,
-                       ((OpcionCombo)cbocategoria.SelectedItem).Valor.ToString(),
-                       ((OpcionCombo)cbocategoria.SelectedItem).Texto.ToString(),
-                       "0",
-                       "0.00",
-                       "0.00",
-                       ((OpcionCombo)cboestado.SelectedItem).Valor.ToString(),
-                       ((OpcionCombo)cboestado.SelectedItem).Texto.ToString()
+                        idgenerado,
+                        txtcodigo.Text,
+                        txtnombre.Text,
+                        txtdescripcion.Text,
+                        ((OpcionCombo)cbocategoria.SelectedItem).Valor.ToString(),
+                        ((OpcionCombo)cbocategoria.SelectedItem).Texto.ToString(),
+                        txtstock.Text,
+                        "0.00",
+                        "0.00",
+                        ((OpcionCombo)cboestado.SelectedItem).Valor.ToString(),
+                        ((OpcionCombo)cboestado.SelectedItem).Texto.ToString()
                     });
 
                     Limpiar();
@@ -128,8 +137,6 @@ namespace CapaPresentacion
                 {
                     MessageBox.Show(mensaje);
                 }
-
-
             }
             else
             {
@@ -142,6 +149,7 @@ namespace CapaPresentacion
                     row.Cells["Codigo"].Value = txtcodigo.Text;
                     row.Cells["Nombre"].Value = txtnombre.Text;
                     row.Cells["Descripcion"].Value = txtdescripcion.Text;
+                    row.Cells["Stock"].Value = txtstock.Text;
                     row.Cells["IdCategoria"].Value = ((OpcionCombo)cbocategoria.SelectedItem).Valor.ToString();
                     row.Cells["Categoria"].Value = ((OpcionCombo)cbocategoria.SelectedItem).Texto.ToString();
                     row.Cells["EstadoValor"].Value = ((OpcionCombo)cboestado.SelectedItem).Valor.ToString();
@@ -154,9 +162,8 @@ namespace CapaPresentacion
                     MessageBox.Show(mensaje);
                 }
             }
-
-
         }
+
 
 
 
@@ -240,6 +247,27 @@ namespace CapaPresentacion
                 }
 
 
+            }
+        }
+
+        // Agrega justo debajo este método:
+        private void dgvdata_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dgvdata.Columns["PrecioCompra"].Index ||
+                e.ColumnIndex == dgvdata.Columns["PrecioVenta"].Index)
+            {
+                int idProducto = Convert.ToInt32(dgvdata.Rows[e.RowIndex].Cells["Id"].Value);
+                decimal precioCompra = Convert.ToDecimal(dgvdata.Rows[e.RowIndex].Cells["PrecioCompra"].Value);
+                decimal precioVenta = Convert.ToDecimal(dgvdata.Rows[e.RowIndex].Cells["PrecioVenta"].Value);
+
+                string mensaje = string.Empty;
+
+                bool resultado = new CN__Producto().ActualizarPrecios(idProducto, precioCompra, precioVenta, out mensaje);
+
+                if (!resultado)
+                {
+                    MessageBox.Show("Error al actualizar: " + mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

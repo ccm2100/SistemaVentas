@@ -94,5 +94,11 @@ namespace CapaNegocio
             return new CD_Producto().RegistrarLotes(idProducto, lotes, out mensaje);
         }
 
+        public bool ActualizarPrecios(int idProducto, decimal precioCompra, decimal precioVenta, out string mensaje)
+        {
+            return new CD_Producto().ActualizarPrecios(idProducto, precioCompra, precioVenta, out mensaje);
+        }
+
+
     }
 }
