@@ -94,9 +94,11 @@ namespace CapaPresentacion
                 Codigo = txtcodigo.Text,
                 Nombre = txtnombre.Text,
                 Descripcion = txtdescripcion.Text,
+                Stock = Convert.ToInt32(txtstock.Text),
                 oCategoria = new Categoria() { IdCategoria = Convert.ToInt32(((OpcionCombo)cbocategoria.SelectedItem).Valor) },
-                Estado = Convert.ToInt32(((OpcionCombo)cboestado.SelectedItem).Valor) == 1 ? true : false
+                Estado = Convert.ToInt32(((OpcionCombo)cboestado.SelectedItem).Valor) == 1
             };
+
 
             if (obj.IdProducto == 0)
             {
@@ -168,6 +170,7 @@ namespace CapaPresentacion
             txtdescripcion.Text = "";
             cbocategoria.SelectedIndex = 0;
             cboestado.SelectedIndex = 0;
+            txtstock.Text = "0";
 
             txtcodigo.Select();
 
@@ -209,7 +212,8 @@ namespace CapaPresentacion
                     txtcodigo.Text = dgvdata.Rows[indice].Cells["Codigo"].Value.ToString();
                     txtnombre.Text = dgvdata.Rows[indice].Cells["Nombre"].Value.ToString();
                     txtdescripcion.Text = dgvdata.Rows[indice].Cells["Descripcion"].Value.ToString();
-            
+                    txtstock.Text = dgvdata.Rows[indice].Cells["Stock"].Value.ToString();
+
 
                     foreach (OpcionCombo oc in cbocategoria.Items)
                     {
@@ -350,5 +354,15 @@ namespace CapaPresentacion
 
             }
         }
+
+        private void txtstock_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo permitir números
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
     }
 }
